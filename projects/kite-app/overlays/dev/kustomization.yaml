@@ -8,4 +8,4 @@ resources:
 
 images:
   - name: wanzinh/kite-app
-    newTag: dev-1.0.0
+    newTag: dev-1.1.0
