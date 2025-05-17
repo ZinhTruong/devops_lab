@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kite-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: kite-app
+  template:
+    metadata:
+      labels:
+        app: kite-app
+    spec:
+      containers:
+        - name: kite
+          image: wanzinh/kite-app
+          ports:
+            - containerPort: 8080
