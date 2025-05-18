@@ -5,6 +5,8 @@ namespace: training
 nameSuffix: -dev
 resources:
   - ../../base
+patchesStrategicMerge:
+  - replicas-patch.yaml
 
 images:
   - name: wanzinh/kite-app
