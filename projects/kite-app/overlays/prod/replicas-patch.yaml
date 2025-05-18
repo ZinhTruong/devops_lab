@@ -1,6 +1,6 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: kite-app
+  name: kite-app-prod
 spec:
   replicas: 3
