@@ -8,4 +8,4 @@ resources:
 
 images:
   - name: wanzinh/kite-app
-    newTag: stg-2.2.2
+    newTag: stg-3.3.3
