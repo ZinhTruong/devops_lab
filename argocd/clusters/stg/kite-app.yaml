@@ -8,7 +8,7 @@ spec:
   source:
     repoURL: https://github.com/ZinhTruong/devops_lab
     targetRevision: main
-    path: projects/kite-app/overlays/stg
+    path: argocd/projects/kite-app/overlays/stg
   destination:
     server: https://kubernetes.default.svc
     namespace: training
