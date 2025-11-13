@@ -5,10 +5,15 @@ namespace: training
 nameSuffix: -dev
 resources:
   - ../../base
+
 patches:
   - path: replicas-patch.yaml
     target:
       kind: Deployment
+      name: kite-app
+  - path: service-nodeport-patch.yaml
+    target:
+      kind: Service
       name: kite-app
 
 images:
