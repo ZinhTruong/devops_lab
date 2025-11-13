@@ -1,0 +1,53 @@
+# ---- Grafana ----
+grafana:
+  service:
+    type: NodePort
+    nodePort: 32000
+  
+  adminUser: admin
+  adminPassword: 
+  persistence:
+    enabled: true
+    size: 10Gi
+    storageClassName: nfs-client
+  securityContext:
+    runAsUser: 472
+    runAsGroup: 472
+    fsGroup: 472
+
+# ---- Prometheus ----
+prometheus:
+  service:
+    type: NodePort
+    nodePort: 30990           # Web UI Prometheus
+  prometheusSpec:
+    retention: 15d
+    storageSpec:
+      volumeClaimTemplate:
+        spec:
+          storageClassName: nfs-client
+          accessModes: ["ReadWriteMany"]
+          resources:
+            requests:
+              storage: 50Gi
+
+# ---- Alertmanager ----
+alertmanager:
+  service:
+    type: NodePort
+    nodePort: 30993           # Web UI Alertmanager
+  alertmanagerSpec:
+    storage:
+      volumeClaimTemplate:
+        spec:
+          storageClassName: nfs-client
+          accessModes: ["ReadWriteMany"]
+          resources:
+            requests:
+              storage: 5Gi
+
+# ---- KSM & Node Exporter giữ mặc định ----
+kube-state-metrics:
+  enabled: true
+nodeExporter:
+  enabled: true

@@ -1,0 +1,82 @@
+# ----- PIPELINE -----
+logstashPipeline:
+  logstash.conf: |
+    input {
+      beats { port => 5044 }
+    }
+
+    output {
+      elasticsearch {
+        hosts => ["https://elasticsearch-master:9200"]
+        # Auth lấy từ Secret env
+        user => "${ELASTIC_USERNAME}"
+        password => "${ELASTIC_PASSWORD}"
+
+        # TLS
+        ssl => true
+        cacert => "/usr/share/logstash/config/certs/ca.crt"
+
+        # Gửi theo Data Stream (khớp với cách bạn đang dùng)
+        data_stream => true
+        data_stream_type => "logs"
+        data_stream_dataset => "default"
+        data_stream_namespace => "k8s"
+      }
+      # Nếu muốn debug song song:
+      # stdout { codec => rubydebug }
+    }
+
+# (tuỳ chọn) logstash.yml cơ bản
+# logstashConfig:
+#   logstash.yml: |
+#     http.host: "0.0.0.0"
+#     xpack.monitoring.enabled: false
+
+# ----- RESOURCES (giữ như bạn đang chạy, tùy ý) -----
+resources:
+  requests:
+    cpu: "500m"
+    memory: "1000Mi"
+  limits:
+    cpu: "800m"
+    memory: "2000Mi"
+
+# ----- PERSISTENCE -----
+persistence:
+  enabled: true
+
+volumeClaimTemplate:
+  accessModes: ["ReadWriteOnce"]
+  storageClassName: nfs-client
+  resources:
+    requests:
+      storage: 5Gi
+
+# ----- SERVICE -----
+service:
+  type: ClusterIP
+  ports:
+    - name: beats
+      port: 5044
+      protocol: TCP
+      targetPort: 5044
+
+# ----- MOUNT CA CỦA ELASTICSEARCH -----
+# Secret có: elasticsearch-master-certs (chứa ca.crt)
+secretMounts:
+  - name: elastic-certs
+    secretName: elasticsearch-master-certs
+    path: /usr/share/logstash/config/certs
+
+# ----- ENV LẤY USER/PASS TỪ SECRET -----
+extraEnvs:
+  - name: ELASTIC_USERNAME
+    valueFrom:
+      secretKeyRef:
+        name: elasticsearch-master-credentials
+        key: username
+  - name: ELASTIC_PASSWORD
+    valueFrom:
+      secretKeyRef:
+        name: elasticsearch-master-credentials
+        key: password

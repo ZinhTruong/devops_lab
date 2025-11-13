@@ -1,0 +1,16 @@
+controller:
+  replicaCount: 2
+  ingressClass:
+    name: nginx
+    create: true
+    setAsDefaultIngress: true
+  service:
+    create: true
+    type: NodePort
+    externalTrafficPolicy: Cluster
+    ports:
+      http: 80
+      https: 443
+    nodePorts:
+      http: 30080
+      https: 30443

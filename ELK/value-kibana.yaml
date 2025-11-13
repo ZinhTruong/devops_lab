@@ -1,0 +1,22 @@
+# --- KIBANA ---
+
+elasticsearchHosts: "https://elasticsearch-master:9200"
+
+# Kibana tin cậy CA của Elasticsearch
+kibanaConfig:
+  kibana.yml: |
+    elasticsearch.hosts: ["https://elasticsearch-master:9200"]
+    elasticsearch.ssl.certificateAuthorities: ["/usr/share/kibana/config/certs/ca.crt"]
+
+resources:
+  requests:
+    cpu: "100m"
+    memory: "200Mi"
+  limits:
+    cpu: "400m"
+    memory: "512Mi"
+
+service:
+  type: NodePort
+  port: 5601
+  nodePort: 30094
