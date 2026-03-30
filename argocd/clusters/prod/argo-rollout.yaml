@@ -6,7 +6,7 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: https://github.com/ZinhTruong/devops_lab
+    repoURL: git@github.com:ZinhTruong/devops_lab.git
     targetRevision: main
     path: argo-rollout/overlays/prod
   destination:
