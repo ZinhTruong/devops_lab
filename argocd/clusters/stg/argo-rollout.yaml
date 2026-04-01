@@ -16,7 +16,7 @@ spec:
 
   destination:
     server: https://kubernetes.default.svc
-    namespace: stg
+    namespace: staging
 
   syncPolicy:
     automated:

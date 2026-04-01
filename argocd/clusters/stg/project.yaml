@@ -13,7 +13,7 @@ spec:
   - '*'
 
   destinations:
-  - namespace: stg
+  - namespace: staging
     server: https://kubernetes.default.svc
 
   clusterResourceWhitelist:
