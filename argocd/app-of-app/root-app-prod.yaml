@@ -8,7 +8,7 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: git@github.com:ZinhTruong/devops_lab.git
+    repoURL: https://github.com/ZinhTruong/devops_lab.git
     targetRevision: main
     path: argocd/clusters/prod
   destination:

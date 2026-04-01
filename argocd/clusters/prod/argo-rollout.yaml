@@ -6,7 +6,7 @@ metadata:
 spec:
   project: instavote
   source:
-    repoURL: git@github.com:ZinhTruong/devops_lab.git
+    repoURL: https://github.com/ZinhTruong/devops_lab.git
     targetRevision: main
     path: argo-rollout/overlays/prod
   destination:
