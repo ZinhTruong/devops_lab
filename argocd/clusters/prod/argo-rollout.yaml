@@ -4,7 +4,7 @@ metadata:
   name: argo-rollout-prod
   namespace: argocd
 spec:
-  project: instavote
+  project: default
   source:
     repoURL: https://github.com/ZinhTruong/devops_lab.git
     targetRevision: main
