@@ -1,3 +1,3 @@
 resources:
 - ../../projects/insta/project.yaml
-- insta-rollout.yaml
+- ../../clusters/stg/insta-rollout.yaml
