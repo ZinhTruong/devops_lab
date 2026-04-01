@@ -11,6 +11,7 @@ spec:
     and controls who can sync or view those apps.
   sourceRepos:
   - git@github.com:ZinhTruong/devops_lab.git
+  - https://github.com/ZinhTruong/devops_lab.git
   destinations:
   - namespace: staging
     server: https://kubernetes.default.svc
