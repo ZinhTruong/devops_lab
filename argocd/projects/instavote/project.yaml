@@ -1,0 +1,41 @@
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: instavote
+  namespace: argocd
+  labels:
+    team: instavote
+spec:
+  description: >
+    Application project that manages the vote rollout surfaces (staging+prod)
+    and controls who can sync or view those apps.
+  sourceRepos:
+  - git@github.com:ZinhTruong/devops_lab.git
+  destinations:
+  - namespace: staging
+    server: https://kubernetes.default.svc
+  - namespace: prod
+    server: https://kubernetes.default.svc
+  clusterResourceWhitelist:
+  - group: "*"
+    kind: "*"
+  namespaceResourceWhitelist:
+  - group: "*"
+    kind: "*"
+  roles:
+  - name: instavote-admin
+    description: Full control for engineers operating the install.
+    policies:
+    - p, role:instavote-admin, applications, *, instavote-*, allow
+    - p, role:instavote-admin, projects, get, instavote, allow
+    - p, role:instavote-admin, repositories, get, *, allow
+    groups:
+    - instavote-admins
+  - name: instavote-viewer
+    description: Read-only visibility plus manual sync on demand.
+    policies:
+    - p, role:instavote-viewer, applications, get, instavote-*, allow
+    - p, role:instavote-viewer, applications, sync, instavote-*, allow
+    - p, role:instavote-viewer, clusters, get, *, allow
+    groups:
+    - instavote-viewers
