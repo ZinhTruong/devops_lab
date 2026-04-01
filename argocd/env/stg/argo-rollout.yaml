@@ -12,7 +12,7 @@ spec:
   source:
     repoURL: https://github.com/ZinhTruong/devops_lab.git
     targetRevision: main
-    path: argo-rollout/overlays/stg
+    path: app/overlays/stg
 
   destination:
     server: https://kubernetes.default.svc

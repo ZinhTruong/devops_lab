@@ -8,7 +8,7 @@ spec:
   source:
     repoURL: https://github.com/ZinhTruong/devops_lab.git
     targetRevision: main
-    path: argo-rollout/overlays/prod
+    path: app/overlays/prod
   destination:
     server: https://kubernetes.default.svc
     namespace: prod
