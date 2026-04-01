@@ -1,10 +1,10 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: argo-rollout-prod
+  name: instavote-prod
   namespace: argocd
 spec:
-  project: default
+  project: instavote
   source:
     repoURL: https://github.com/ZinhTruong/devops_lab.git
     targetRevision: main
