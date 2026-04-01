@@ -1,0 +1,3 @@
+resources:
+- ../../projects/stg/project.yaml
+- ../../environments/stg/argo-rollout.yaml

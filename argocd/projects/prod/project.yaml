@@ -3,13 +3,16 @@ kind: AppProject
 metadata:
   name: instavote
   namespace: argocd
+  labels:
+    team: instavote
 spec:
+  description: Production AppProject for the instavote rollout.
+
   sourceRepos:
-  - https://github.com/ZinhTruong/devops_lab
+  - https://github.com/ZinhTruong/devops_lab.git
+  - git@github.com:ZinhTruong/devops_lab.git
 
   destinations:
-  - namespace: stg
-    server: https://kubernetes.default.svc
   - namespace: prod
     server: https://kubernetes.default.svc
 

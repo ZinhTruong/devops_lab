@@ -10,7 +10,7 @@ spec:
   source:
     repoURL: https://github.com/ZinhTruong/devops_lab.git
     targetRevision: main
-    path: argocd/clusters/stg
+    path: argocd/env/stg
   destination:
     server: https://kubernetes.default.svc
     namespace: argocd
