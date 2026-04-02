@@ -21,7 +21,7 @@ jobs:
           set -euo pipefail
           IMAGE_TAG="${{ github.event.inputs.image_tag }}"
           ROLL_FILE="app/base/rollout.yaml"
-          OLD_IMAGE=$(rg -o "image: schoolofdevops/vote:[^[:space:]]+" "$ROLL_FILE" | head -1)
+          OLD_IMAGE=$(grep -o "image: schoolofdevops/vote:[^[:space:]]*" "$ROLL_FILE" | head -1)
           if [ -z "$OLD_IMAGE" ]; then
             echo "unable to locate rollout image line"
             exit 1
@@ -34,7 +34,7 @@ jobs:
           set -euo pipefail
           IMAGE_TAG="${{ github.event.inputs.image_tag }}"
           PROD_FILE="app/overlays/prod/kustomization.yaml"
-          OLD_TAG=$(rg -o "newTag: [^[:space:]]+" "$PROD_FILE" | head -1)
+          OLD_TAG=$(grep -o "newTag: [^[:space:]]*" "$PROD_FILE" | head -1)
           if [ -z "$OLD_TAG" ]; then
             echo "unable to locate newTag line"
             exit 1
