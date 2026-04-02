@@ -45,7 +45,7 @@ jobs:
       - name: Create pull request
         uses: peter-evans/create-pull-request@v5
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.PAT_FOR_PR }}
           commit-message: "chore: bump vote image to ${{ github.event.inputs.image_tag }}"
           title: "ci: bump vote image to ${{ github.event.inputs.image_tag }}"
           body: |
