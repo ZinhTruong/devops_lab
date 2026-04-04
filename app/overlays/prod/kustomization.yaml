@@ -15,4 +15,4 @@ patches:
 images:
 - name: schoolofdevops/vote
   # newName: initcron/vote
-  newTag: v13
+  newTag: v15
